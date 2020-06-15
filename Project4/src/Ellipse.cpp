@@ -1,5 +1,5 @@
 #include "Ellipse.h"
-
+#include <cmath>
 
 Ellipse::Ellipse(double centrePosX, double centrePosY, double newRadiusX, double newRadiusY, unsigned int newNumberOfPoints)
 {
@@ -16,8 +16,8 @@ Ellipse::Ellipse(double centrePosX, double centrePosY, double newRadiusX, double
 	theta *= 3.14159265359 /180 ;
 	for(int i = 0; i < numberOfPoints ; i++)
 	{
-		points.setElement(centrePosX + cos(theta*i) * radiusX, i,0);
-		points.setElement(centrePosY + sin(theta*i) * radiusY, i,1);
+		points.setElement(centrePosX + std::cos(theta*i) * radiusX, i,0);
+		points.setElement(centrePosY + std::sin(theta*i) * radiusY, i,1);
 		points.setElement(1,i,3);
 	}
 	points.setElement(points.getElement(0,0), numberOfPoints-1,0);

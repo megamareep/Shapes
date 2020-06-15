@@ -5,8 +5,8 @@ project(Shapes
     DESCRIPTION "Shapes using bad physics"
     LANGUAGES CXX)
 
-
-
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
 
@@ -34,7 +34,9 @@ target_include_directories(shapes PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Project4/in
 target_link_libraries(shapes PRIVATE ${SFML_LIBRARIES})
 
 #message(STATUS "SFML BUILD DIR: ${sfml_BINARY_DIR}/${CMAKE_BUILD_TYPE}")
+if(WIN32)
 add_custom_command(TARGET shapes POST_BUILD        # Adds a post-build event to MyTest
     COMMAND ${CMAKE_COMMAND} -E copy_directory  # which executes "cmake - E copy_if_different..."
         "${sfml_BINARY_DIR}/lib/$<CONFIG>"      # <--this is in-file
         $<TARGET_FILE_DIR:shapes>)                 # <--this is out-file path
+endif(WIN32)

@@ -2,7 +2,7 @@
 @UI.cpp
 */
 #include "Vector2D.h"
-
+#include <cmath>
 
 Vector2D::Vector2D()
 {
@@ -17,19 +17,19 @@ Vector2D::Vector2D(float nx, float ny)
 	x = nx;
 	y = ny;
 }
-Vector2D Vector2D::add(Vector2D &other)
+Vector2D Vector2D::add(const Vector2D &other) const
 {
 	return Vector2D(x + other.x, y + other.y);
 }
-Vector2D Vector2D::subtract(Vector2D &other)
+Vector2D Vector2D::subtract(const Vector2D &other) const
 {
 	return Vector2D(x - other.x, y - other.y);
 }
-Vector2D Vector2D::scalar(float scalar)
+Vector2D Vector2D::scalar(float scalar) const
 {
 	return Vector2D(x*scalar,y*scalar);
 }
-Vector2D Vector2D::minMax(Vector2D &a, Vector2D &b)
+Vector2D Vector2D::minMax(const Vector2D &a, const Vector2D &b) const
 {
 	float rX = 0.f;
 	float rY = 0.f;
@@ -52,27 +52,27 @@ Vector2D Vector2D::minMax(Vector2D &a, Vector2D &b)
 	}
 	return Vector2D(rX,rY);
 }
-float Vector2D::dotProduct(Vector2D &other)
+float Vector2D::dotProduct(const Vector2D &other) const
 {
 	return x * other.x + y * other.y;
 }
-float Vector2D::crossProduct(Vector2D &other)
+float Vector2D::crossProduct(const Vector2D &other) const
 {
 	return x*other.y - y*other.x;
 }
-float Vector2D::magnitude()
+float Vector2D::magnitude() const
 {
-	return sqrtf(powf(x,2.f)+powf(y,2.f));
+	return std::sqrt(std::pow(x,2.f)+ std::pow(y,2.f));
 }
-float Vector2D::getX()const
+float Vector2D::getX() const
 {
 	return x;
 }
-float Vector2D::getY()const
+float Vector2D::getY() const
 {
 	return y;
 }
-Vector2D Vector2D::getUnitVector()
+Vector2D Vector2D::getUnitVector() const
 {
 	float mag = magnitude();
 	return Vector2D (x/mag, y/mag);

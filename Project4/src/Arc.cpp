@@ -1,4 +1,5 @@
 #include "Arc.h"
+#include <cmath>
 
 Arc::Arc(double centrePosX, double centrePosY,double newStartAngle, double newEndAngle, double newRadiusX, double newRadiusY, unsigned int newNumberOfPoints)
 {
@@ -17,8 +18,8 @@ Arc::Arc(double centrePosX, double centrePosY,double newStartAngle, double newEn
 	theta *= 3.14159265359 /180 ;
 	for(int i = 0; i < numberOfPoints ; i++)
 	{
-		points.setElement(centrePosX + cos(theta*i) * radiusX, i,0);
-		points.setElement(centrePosY + sin(theta*i) * radiusY, i,1);
+		points.setElement(centrePosX + std::cos(theta*i) * radiusX, i,0);
+		points.setElement(centrePosY + std::sin(theta*i) * radiusY, i,1);
 		points.setElement(1,i,3);
 	}
 

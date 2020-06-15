@@ -1,4 +1,5 @@
 #include "Circle.h"
+#include <cmath>
 
 Circle::Circle(double centrePosX, double centrePosY, double newRadius, unsigned int newNumberOfPoints)
 {
@@ -19,8 +20,8 @@ Circle::Circle(double centrePosX, double centrePosY, double newRadius, unsigned 
 	points.setElement(centreY, 0,1);
 	for(int i = 1; i < numberOfPoints ; i++)
 	{
-		points.setElement(centreX + cos(theta*i) * radius, i,0);
-		points.setElement(centreY + sin(theta*i) * radius, i,1);
+		points.setElement(centreX + std::cos(theta*i) * radius, i,0);
+		points.setElement(centreY + std::sin(theta*i) * radius, i,1);
 		points.setElement(1,i,3);
 	}
 	points.setElement(points.getElement(1,0), numberOfPoints-1,0);
@@ -37,8 +38,8 @@ void Circle::intergrate(float time)
 	//points.setElement(pos.getY(), 0,1);
 	for(int i = 0; i < numberOfPoints ; i++)
 	{
-		points.setElement(pos.getX() + cos(theta*i) * radius, i,0);
-		points.setElement(pos.getY() + sin(theta*i) * radius, i,1);
+		points.setElement(pos.getX() + std::cos(theta*i) * radius, i,0);
+		points.setElement(pos.getY() + std::sin(theta*i) * radius, i,1);
 		points.setElement(1,i,3);
 	}
 	//points.setElement(points.getElement(1,0), numberOfPoints-1,0);

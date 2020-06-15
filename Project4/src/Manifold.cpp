@@ -23,8 +23,9 @@ void Manifold::ApplyImpulse(Shape &a, Shape &b)   // Solve impulse and apply
 	percentCorrection = 0.5f;
 	slop = 0.02f;
 	Vector2D c = normal.scalar((std::max(penetrationDepth - slop, 0.f)/inverseMass) * percentCorrection);//!<  Works out the position correction
-	a.setPos(a.getPosition().subtract(c.scalar(1/a.getMass())));//!< sets circle A to new position
-	b.setPos(b.getPosition().add(c.scalar(1/b.getMass())));//!< sets Box B to new position
+
+	a.setPos(a.getPosition().subtract(c.scalar(1.f/a.getMass())));//!< sets circle A to new position
+	b.setPos(b.getPosition().add(c.scalar(1.f/b.getMass())));//!< sets Box B to new position
 	//! Circle to Circle
 	float dotProduct;
 	//!SV = -(1+e) * n * n.v

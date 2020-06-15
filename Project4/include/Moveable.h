@@ -27,10 +27,10 @@ public:
 	void setPos(Vector2D nPos);//!< sets Position
 	void setInverseMass(float m){inverseMass = m;};
 	void setCoeffient(float nDrag, float nDensity, float nElasticity, float nFriction);//!< Sets the coeffients
-	Vector2D getPosition()const;//!< Returns Position
-	Vector2D getVelocity()const;//!< Returns Velocity
-	Vector2D getAccel()const;//!< Returns Acceleration
-	Vector2D acceleration(Vector2D nPos, Vector2D nVel);//!< Calculates acceleration
+	const Vector2D& getPosition()const;//!< Returns Position
+	const Vector2D& getVelocity()const;//!< Returns Velocity
+	const Vector2D& getAccel()const;//!< Returns Acceleration
+	Vector2D acceleration(const Vector2D& nPos, const Vector2D& nVel);//!< Calculates acceleration
 	float getMass()const;//!<Calculates and Returns the Mass
 	float getDrag()const;//!< Returns drag coefficent
 	float getElasticity()const;//!< Returns Elasticity

@@ -2,6 +2,7 @@
 @Moveable.cpp
 */
 #include "Moveable.h"
+#include <cmath>
 
 Moveable::Moveable()
 {
@@ -58,19 +59,19 @@ void Moveable::setCoeffient(float nDrag, float nDensity, float nElasticity, floa
 	mass = nDensity * area;
 }
 
-Vector2D Moveable::getPosition()const
+const Vector2D& Moveable::getPosition()const
 {
 	return pos;
 }
-Vector2D Moveable::getVelocity()const
+const Vector2D& Moveable::getVelocity()const
 {
 	return vel;
 }
-Vector2D Moveable::getAccel()const
+const Vector2D& Moveable::getAccel()const
 {
 	return acc;
 }
-Vector2D Moveable::acceleration(Vector2D nPos, Vector2D nVel)
+Vector2D Moveable::acceleration(const Vector2D& nPos,const Vector2D& nVel)
 {
 	return Vector2D(acc.getX(), acc.getY() - drag * vel.getY());
 }
@@ -99,10 +100,10 @@ void Moveable::rotate(double theta)
 	matrixCalculator.setHeight(4);
 	matrixCalculator.setWidth(4);
 	matrixCalculator.createTable();
-	matrixCalculator.setElement(cos(theta),0,0);
-	matrixCalculator.setElement(-sin(theta),1,0);
-	matrixCalculator.setElement(sin(theta),0,1);
-	matrixCalculator.setElement(cos(theta),1,1);
+	matrixCalculator.setElement(std::cos(theta),0,0);
+	matrixCalculator.setElement(-std::sin(theta),1,0);
+	matrixCalculator.setElement(std::sin(theta),0,1);
+	matrixCalculator.setElement(std::cos(theta),1,1);
 	matrixCalculator.setElement(1,3,3);
 	matrixCalculator.setElement(1,2,2);
 	points.matrixMultiplication(matrixCalculator);
